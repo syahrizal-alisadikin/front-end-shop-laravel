@@ -5,12 +5,20 @@ import { createStore } from 'vuex'
 import auth from './module/auth'
 //import module order
 import order from './module/order'
+
+//import module category
+import category from './module/category'
+
+//import module slider
+import slider from './module/slider'
 //create store vuex
 export default createStore({
 
     modules: {
         auth, //Module Auth
-        order //Module order
+        order, //Module order
+        category, //Module Category
+        slider //Module Slider
     }
 
 })
