@@ -43,7 +43,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button class="btn btn-primary btn-lg btn-block"><i class="fa fa-shopping-cart"></i> TAMBAH KE KERANJANG</button>
+                        <button @click.prevent="addToCart(product.id, calculateDiscount(product), product.weight)" class="btn btn-primary btn-lg btn-block"><i class="fa fa-shopping-cart"></i> TAMBAH KE KERANJANG</button>
                     </div>
                 </div>
             </div>
@@ -92,11 +92,31 @@ export default {
             return store.state.product.productDetail
         })
 
+        // function AddToCart
+        function addToCart(product_id, price,weight){
+
+            // check token terlebih dahulu
+            const token = store.state.auth.token
+
+            if(!token){
+                return route.push({name: 'login'})
+            }
+
+            // panggil action addToCart di module cart
+            store.dispatch('cart/addToCart', {
+                fk_product_id: product_id,
+                price : price,
+                weight: weight,
+                quantity: 1
+            })
+        }
+
         return {
             route,
             router,
             store,
-            product
+            product,
+            addToCart
         }
     }
 

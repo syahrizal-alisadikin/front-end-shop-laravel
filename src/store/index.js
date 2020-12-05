@@ -12,6 +12,8 @@ import category from './module/category'
 //import module slider
 import slider from './module/slider'
 
+//import module cart
+import cart from './module/cart'
 
 //import module product
 import product from './module/product'
@@ -23,7 +25,8 @@ export default createStore({
         order, //Module order
         category, //Module Category
         slider, //Module Slider
-        product //Module Product
+        product, //Module Product
+        cart,       // <-- module cart
     }
 
 })
