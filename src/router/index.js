@@ -47,6 +47,23 @@ const routes = [
       name: 'home',
       component: () => import( /* webpackChunkName: "home" */ '@/view/home/Index.vue')
     },
+
+     {
+      path: '/product/:slug',
+      name: 'detail_product',
+      component: () => import(/* webpackChunkName: "detail_product" */ '../view/product/Show.vue')
+    },
+
+     {
+      path: '/categories',
+      name: 'categories',
+      component: () => import(/* webpackChunkName: "category" */ '../view/category/Index.vue')
+    },
+    {
+      path: '/category/:slug',
+      name: 'detail_category',
+      component: () => import(/* webpackChunkName: "detail_category" */ '../view/category/Show.vue')
+    },
 ]
 
 //create router

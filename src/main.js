@@ -1,6 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
+AOS.refresh();
 //import router
 import router from './router'
 
@@ -19,12 +22,13 @@ app.mixin({
 
     methods:{
 
-        // Money Thousands
-        moneyFormat(number){
-            let reverse = number.to.String().split('').reverse().join(''),
-            thausands = reverse.match(/\d{1,3}/g)
-            thausands = thausands.join('.').split('').reverse().join('')
-            return thausands
+     
+          //money thousands
+        moneyFormat(number) {
+            let reverse = number.toString().split('').reverse().join(''),
+            thousands   = reverse.match(/\d{1,3}/g)
+            thousands   = thousands.join('.').split('').reverse().join('')
+            return thousands
         },
 
         // Calculate Diskon
