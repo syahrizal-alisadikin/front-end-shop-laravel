@@ -38,7 +38,7 @@ const category = {
         getCategories({ commit }){
             Api.get('/categories')
             .then(response => {
-                console.log(response)
+                // console.log(response)
                 // commit ke mutattion GET_CATEGORIES dengan response data
                 commit('GET_CATEGORIES', response.data.categories)
             }).catch(error => {

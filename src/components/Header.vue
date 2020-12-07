@@ -24,7 +24,7 @@
                         <div class="d-flex justify-content-end">
                             <div class="cart-header">
                                 <a href="#" class="btn search-button btn-md" style="color: #ffffff;background-color: #6677ef;border-color: #ffffff;">
-                                    <i class="fa fa-shopping-cart"></i> 0 | Rp. 0
+                                    <i class="fa fa-shopping-cart"></i> {{ cartCount }} | Rp. {{ moneyFormat(cartTotal) }}
                                 </a>
                             </div>
 
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useStore } from 'vuex'
 export default {
     setup(){
@@ -57,8 +57,33 @@ export default {
         })
 
 
-        // computed
+        // cartCount
+        const cartCount = computed(()=> {
+
+            // get getter "cartCount"  dari modul auth
+            return store.getters['cart/cartCount']
+        })
        
+        // cart Total
+        const cartTotal = computed(()=>{
+            return store.getters['cart/cartTotal']
+        })
+
+        onMounted(() => {
+
+            // check state token 
+            const token = store.state.auth.token
+
+            if(!token){
+                return
+            }
+
+            // saat moounted, akan memanggil action "cartCount" di module "cart"
+            store.dispatch('cart/cartCount')
+
+            // saat mounted, akan memanggil action "cartTotal" di modul cart
+            store.dispatch('cart/cartTotal')
+        })
 
         const user = computed(() => {
                 return store.getters['auth/currentUser']
@@ -68,7 +93,9 @@ export default {
         return {
             store,
             user,
-            isLoggedIn
+            isLoggedIn,
+            cartCount,
+            cartTotal
         }
     }
 }

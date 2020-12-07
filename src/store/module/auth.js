@@ -114,6 +114,8 @@ const auth = {
                 localStorage.removeItem('token')
                 localStorage.removeItem('user')
 
+                commit('cart/GET_CART', 0, { root: true }) // <-- kita tambahkan root menjadi true, karena beda modulue
+                commit('cart/TOTAL_CART', 0, { root: true }) 
                 //delete header axios
                 delete Api.defaults.headers.common['Authorization']
                 
