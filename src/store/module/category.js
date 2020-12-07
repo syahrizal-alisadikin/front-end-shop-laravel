@@ -53,7 +53,7 @@ const category = {
             // get data product by category ke server
             Api.get(`/category/${ slug }`)
             .then(response => {
-                console.log(response)
+                // console.log(response)
                 // commit ke mutation PRODUCT_INCATEGORY dengan response data
                 commit('PRODUCT_IN_CATEGORY', response.data.product)
             }).catch(error => {

@@ -93,18 +93,18 @@ export default {
         })
 
         // function AddToCart
-        function addToCart(product_id, price,weight){
+        function addToCart(fk_product_id, price,weight){
 
             // check token terlebih dahulu
             const token = store.state.auth.token
 
             if(!token){
-                return route.push({name: 'login'})
+                return router.push({name: 'login'})
             }
 
             // panggil action addToCart di module cart
             store.dispatch('cart/addToCart', {
-                fk_product_id: product_id,
+                fk_product_id: fk_product_id,
                 price : price,
                 weight: weight,
                 quantity: 1

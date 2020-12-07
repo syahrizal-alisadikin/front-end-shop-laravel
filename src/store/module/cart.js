@@ -40,7 +40,7 @@ const cart = {
     actions: {
 
         // action addToCart
-        addToCart({commit}, { product_id, price,quantity, weight }){
+        addToCart({commit}, { fk_product_id, price,quantity, weight }){
 
             // get data token user
             const token = localStorage.getItem('token')
@@ -51,7 +51,7 @@ const cart = {
 
             // Send data cart ke server
             Api.post('/cart',{
-                fk_product_id: product_id,
+                fk_product_id: fk_product_id,
                 price:price,
                 quantity: quantity,
                 weight:weight,
@@ -80,5 +80,16 @@ const cart = {
     // getters
     getters: {
 
+        // get cart
+        geCart(state){
+            return state.cart
+        },
+
+         //count cart
+        cartCount(state) {
+            return state.cart.length
+        }
     }
 }
+
+export default cart
